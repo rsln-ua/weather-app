@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter} from 'react-router-dom';
 import {Router} from './Router';
-import {SyncWithLocalStorageContainer} from './containers/SyncWithLocalStorageContainer';
+import {SyncWithLocalStorageContainer} from './containers';
 import 'antd/dist/antd.css';
 
 function App() {

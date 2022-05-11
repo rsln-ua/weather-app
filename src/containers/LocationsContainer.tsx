@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../store';
 import {actionAddLocation, actionReloadLocation} from '../actions/locations';
 import {useDispatch} from '../hooks/store';
-import {locationsActions} from '../reducers/locations';
+import {locationsActions} from '../reducers';
 import {Locations} from '../components/Locations';
 import {Spin} from '../components/Spin';
 

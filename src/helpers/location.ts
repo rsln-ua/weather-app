@@ -9,7 +9,6 @@ export const locationToState: ILocationToState = (data) => {
   const {weather, main, sys, name, wind, id} = data;
 
   return {
-    // fixme: may be more, then one weather state
     main: weather[0]?.main,
     description: weather[0]?.description,
     feels_like: main.feels_like,

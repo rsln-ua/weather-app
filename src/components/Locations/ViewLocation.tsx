@@ -1,7 +1,7 @@
 import React, {CSSProperties, ReactNode} from 'react';
 import {Button, Descriptions} from 'antd';
 import {TLocation} from '../../types/weather';
-import {TempDiagramContainer} from '../../containers/TempDiagramContainer';
+import {TempDiagramContainer} from '../../containers';
 import {Link} from 'react-router-dom';
 import {routes} from '../../constants/routes';
 
