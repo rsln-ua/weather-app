@@ -1,7 +1,9 @@
 import React, {CSSProperties, ReactNode} from 'react';
-import {Descriptions} from 'antd';
+import {Button, Descriptions} from 'antd';
 import {TLocation} from '../../types/weather';
 import {TempDiagramContainer} from '../../containers/TempDiagramContainer';
+import {Link} from 'react-router-dom';
+import {routes} from '../../constants/routes';
 
 const pageWrapperStyles: CSSProperties = {
   display: 'flex',
@@ -14,6 +16,7 @@ const descrWrapperStyles: CSSProperties = {
   backgroundColor: 'white',
   borderRadius: '4px',
   padding: '2rem',
+  marginTop: '2rem',
 };
 
 const labels: Partial<Record<keyof TLocation, string>> = {
@@ -55,6 +58,11 @@ export const ViewLocation: React.FC<IProps> = ({location}) => {
 
   return (
     <div style={pageWrapperStyles}>
+      <div>
+        <Link to={routes.main.get()}>
+          <Button>Back</Button>
+        </Link>
+      </div>
       <div style={descrWrapperStyles}>
         <Descriptions title={locationName}>
           {descriptionItems.map((el) => {
