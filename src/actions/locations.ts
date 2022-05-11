@@ -1,13 +1,13 @@
 import {message} from 'antd';
 import axios from 'axios';
 import {getWeatherHistoryUrl, getWeatherUrl} from '../helpers/api';
+import {hourDataToState} from '../helpers/history';
 import {locationToState} from '../helpers/location';
-import {locationsActions, currentLocationActions} from '../reducers';
+import {currentLocationActions, locationsActions} from '../reducers';
 import {SimpleError} from '../types/helpers';
 import {TAction} from '../types/store';
 import {TWeatherResponse} from '../types/weather';
 import {TAllWeatherDataResponse} from '../types/weatherHistory';
-import {hourDataToState} from '../helpers/history';
 
 const errorLocationExist = 'Location already exist.';
 
@@ -87,5 +87,30 @@ export const actionGetLocationData: TAction<IGetLocationData> =
       message.error((error as SimpleError).message);
     } finally {
       dispatch(currentLocationActions.setLoading(false));
+    }
+  };
+
+interface ILoadLocations {
+  locationIds: Array<number>;
+}
+
+export const actionLoadLocations: TAction<ILoadLocations> =
+  ({locationIds}) =>
+  async (dispatch) => {
+    try {
+      dispatch(locationsActions.setLoading(true));
+
+      const data = (await Promise.allSettled(
+        locationIds.map((el) =>
+          axios.get<TWeatherResponse>(getWeatherUrl({locationId: el}).href).then((res) => res.data),
+        ),
+      ).then((res) => res.filter((el) => el.status === 'fulfilled'))) as Array<
+        PromiseFulfilledResult<TWeatherResponse>
+      >;
+      dispatch(locationsActions.setLocations(data.map((el) => locationToState(el.value))));
+    } catch (error) {
+      message.error((error as SimpleError).message);
+    } finally {
+      dispatch(locationsActions.setLoading(false));
     }
   };
