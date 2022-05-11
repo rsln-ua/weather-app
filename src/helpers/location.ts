@@ -1,3 +1,4 @@
+import {LOCATIONS_IDS_KEY} from '../constants/common';
 import {TLocation, TWeatherResponse} from '../types/weather';
 
 interface ILocationToState {
@@ -24,4 +25,21 @@ export const locationToState: ILocationToState = (data) => {
     wind_deg: wind.deg,
     wind_speed: wind.speed,
   };
+};
+
+export const saveIdsToLocalStorage = (data?: Array<TLocation>): void => {
+  const idsData = JSON.stringify(data?.map((el) => el.locationId) || []);
+  localStorage?.setItem(LOCATIONS_IDS_KEY, idsData);
+};
+
+export const getIdsFromLocalStorage = (): Array<number> => {
+  try {
+    const jsonData = localStorage?.getItem(LOCATIONS_IDS_KEY);
+    if (!jsonData) return [];
+
+    const idsData = JSON.parse(jsonData);
+    return Array.isArray(idsData) ? idsData : [];
+  } catch {
+    return [];
+  }
 };
