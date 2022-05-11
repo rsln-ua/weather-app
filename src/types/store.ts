@@ -4,12 +4,10 @@ import {THourData} from './weatherHistory';
 
 export interface TStore {
   locations: {
-    error: null | string;
     loading: boolean;
     data: Array<TLocation>;
   };
   currentLocation: {
-    error: null | string;
     loading: boolean;
     data: TLocation | null;
     history: Array<THourData>;

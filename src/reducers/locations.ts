@@ -6,7 +6,6 @@ export const addLocations = createAction<TLocation>('add locations');
 export const removeLocations = createAction<number>('remove locations');
 export const updateLocation = createAction<TLocation>('update locations');
 export const setLoading = createAction<boolean>('set loading');
-export const setError = createAction<string | null>('set error');
 
 export const locations = createReducer<Array<TLocation>>([], {
   [setLocations.type]: (_, {payload}: PayloadAction<Array<TLocation>>) => payload,
@@ -20,14 +19,9 @@ export const loading = createReducer(false, {
   [setLoading.type]: (_, {payload}: PayloadAction<boolean>) => payload,
 });
 
-export const error = createReducer<string | null>(null, {
-  [setError.type]: (_, {payload}: PayloadAction<string | null>) => payload,
-});
-
 export const locationsState = combineReducers({
   data: locations,
   loading,
-  error,
 });
 
 export const locationsActions = {
@@ -36,5 +30,4 @@ export const locationsActions = {
   removeLocations,
   updateLocation,
   setLoading,
-  setError,
 };
