@@ -1,11 +1,13 @@
 import React, {CSSProperties, ReactNode} from 'react';
 import {Descriptions} from 'antd';
 import {TLocation} from '../../types/weather';
+import {TempDiagramContainer} from '../../containers/TempDiagramContainer';
 
 const pageWrapperStyles: CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
   padding: '0 4rem',
+  maxWidth: '100vw',
 };
 
 const descrWrapperStyles: CSSProperties = {
@@ -64,6 +66,7 @@ export const ViewLocation: React.FC<IProps> = ({location}) => {
           })}
         </Descriptions>
       </div>
+      <TempDiagramContainer />
     </div>
   );
 };
