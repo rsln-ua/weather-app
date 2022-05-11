@@ -1,7 +1,12 @@
-import {configureStore, ThunkAction, Action} from '@reduxjs/toolkit';
+import {configureStore, ThunkAction, Action, isPlain} from '@reduxjs/toolkit';
+import {TStore} from './types/store';
+import {locationsState, currentLocationState} from './reducers';
 
-export const store = configureStore({
-  reducer: {},
+export const store = configureStore<TStore>({
+  reducer: {
+    locations: locationsState,
+    currentLocation: currentLocationState,
+  },
 });
 
 export type AppDispatch = typeof store.dispatch;
