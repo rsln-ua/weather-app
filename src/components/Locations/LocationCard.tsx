@@ -6,7 +6,7 @@ import {routes} from '../../constants/routes';
 
 const {Meta} = Card;
 
-interface IProps {
+export interface IProps {
   main: string;
   description: string;
   temp: number;

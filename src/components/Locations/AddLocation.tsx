@@ -15,11 +15,11 @@ const cardStyles: CSSProperties = {
   minHeight: '245px',
 };
 
-interface TFormData {
+export interface TFormData {
   locationName: string;
 }
 
-interface IProps {
+export interface IProps {
   addLocation: (name: string) => Promise<void>;
 }
 
@@ -51,7 +51,7 @@ export const AddLocation: React.FC<IProps> = ({addLocation}) => {
         <PlusCircleOutlined style={{cursor: 'pointer'}} onClick={showModal} />
       </Card>
       <Modal title={modalTitle} onOk={handleAddLocation} onCancel={hideModal} visible={isShow}>
-        <Form form={form}>
+        <Form form={form} onFinish={handleAddLocation}>
           <Form.Item name="locationName" rules={[{required: true, message: errorMessage}]}>
             <Input />
           </Form.Item>

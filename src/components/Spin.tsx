@@ -7,7 +7,7 @@ const styles: CSSProperties = {
   maxHeight: 'none',
 };
 
-interface IProps {
+export interface IProps {
   children: ReactNode;
   spinning: boolean;
 }
