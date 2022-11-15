@@ -1,6 +1,7 @@
 # [Weather APP](https://rsln-ua.github.io/weather-app/)
 
 This project was a test task for one company. I had spent on it for 8 - 10 hours.
+You can see it here: [https://rsln-ua.github.io/weather-app/](https://rsln-ua.github.io/weather-app/)
 
 ## Requirements for app and stack:
 
